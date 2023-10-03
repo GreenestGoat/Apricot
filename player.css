@@ -28,7 +28,7 @@ body {
   transition: width 0.2s ease, height 0.2s ease, all 0.2s ease;
 }
 
-#captionContainer {
+#captions-styles {
   pointer-events: none;
   user-select: none;
   border: none;
@@ -40,13 +40,34 @@ body {
   display: flex;
   justify-content: center;
   width: 100%;
-  bottom: 160px;
+  bottom: 0px;
+  z-index: 20;
+  transition: text 0.2s ease, font-size 0.2s ease, size 0.2s ease, font 0.2s ease, all 0.2s ease;
+}
+
+#captionContainer {
+  display: none;
+  padding: 24px;
+  border-radius: 25px;
+  pointer-events: none;
+  user-select: none;
+  border: none;
+  outline: none;
+  position: relative;
+  left: 0;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, .68);
+  width: 35%;
+  height: auto;
   font-weight: bold;
   font-family: 'Open Sans', sans-serif;
-  color: rgb(255, 255, 255);
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-  font-size: clamp(6px, 3vw, 28px);
-  z-index: 10;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  font-size: clamp(6px, 3vw, 30px);
+  z-index: 20;
   transition: text 0.2s ease, font-size 0.2s ease, size 0.2s ease, font 0.2s ease, all 0.2s ease;
 }
 
@@ -514,6 +535,7 @@ body {
   bottom: 0;
   align-items: center;
   text-align: center;
+  transition: height 0.2s ease;
 }
 
 /* .pause-button,
@@ -532,6 +554,8 @@ body {
   justify-content: flex-end;
   z-index: 3;
   align-items: center;
+  display: flex;
+  text-align: center;
 }
 
 #play-button,
@@ -542,7 +566,6 @@ body {
   background: transparent;
   border: none;
   color: rgb(255,255,255);
-  font-size: 24px;
   cursor: pointer;
   margin-right: 5px;
   margin-left: 5px;
@@ -554,6 +577,7 @@ body {
 }
 
 /* Control Bar Buttons */
+#mute-button,
 #quality-button,
 #pip-button,
 #captions-button,
@@ -565,7 +589,6 @@ body {
   text-align: center;
   background: transparent;
   border: none;
-  font-size: 24px;
   cursor: pointer;
   margin-right: 10px;
   margin-left: 10px;
@@ -576,6 +599,7 @@ body {
   transition: all 0.1s ease;
 }
 
+#mute-button:hover,
 #quality-button:hover,
 #settings-button:hover,
 #play-button:hover,
@@ -601,6 +625,7 @@ body {
   transform: rotate(45deg);
 }*/
 
+#mute-button:active,
 #quality-button:active,
 #settings-button:active,
 #play-button:active,
@@ -759,20 +784,6 @@ body {
   align-items: center;
 }
 
-#mute-button {
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: transparent;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  transition: transform 0.1s ease, all 0.1s ease;
-  font-family: 'Open Sans', sans-serif;
-  color: #ffffff;
-  transition: all 0.1s ease;
-}
-
 #volume-slider {
   cursor: pointer;
   width: 0;
@@ -869,6 +880,15 @@ body {
   .overlay {
     right: 19%;
   }
+  #pip-button::before {
+    content: "";
+  }
+  #captions-button::before {
+    content: "";
+  }
+  #settings-button::before {
+    content: "";
+  }
 }
 
 @media screen and (max-width: 1440px) {
@@ -895,6 +915,148 @@ body {
 
 /* Media Queries */
 @media screen and (max-width: 1280px) {
+  #control-bar {
+    height: 115px;
+  }
+
+  #time-bar-wrapper {
+    padding: 8px 0px 8px 0;
+  }
+
+  #backward-button svg,
+  #forward-button svg {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 34px;
+    width: 34px;
+  }
+
+  #pause-button svg,
+  #play-button svg {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 70px;
+    width: 70px;
+  }
+
+  .volume-buttons {
+    z-index: 4;
+  }
+
+  .volume-buttons button,
+  .right-buttons button {
+    justify-content: center;
+    width: max-content;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    user-select: none;
+    cursor: pointer;
+    border: none;
+    font-family: 'Open Sans', sans-serif;
+    transition: all 0.2s ease;
+    font-weight: normal;
+    font-size: 20px;
+  }
+  
+  .volume-buttons button svg {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 25px;
+    width: 25px;
+  }
+
+  .right-buttons {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 115px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    align-items: center;
+    text-align: center;
+    transition: height 0.2s ease;
+  }
+
+  .right-buttons button svg {
+    margin-left: 16px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 25px;
+    width: 25px;
+  }  
+
+  #pip-button::before {
+    content: "Picture-in-Picture";
+  }
+  #captions-button::before {
+    content: "Captions";
+  }
+  #settings-button::before {
+    content: "Settings";
+  }
+
+  #captionContainer {
+    padding: 20px;
+    width: 42%;
+    height: auto;
+    font-size: 20px;
+  }
+
+  #loading-overlay {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    background: transparent;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    pointer-events: none; /* Allow click events to pass through */
+  }
+  
+  .spinner {
+    width: 30px;
+    padding: 8px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #ffffff;
+    --_m: 
+      conic-gradient(#0000 5%,#000),
+      linear-gradient(#000 0 0) content-box;
+    -webkit-mask: var(--_m);
+            mask: var(--_m);
+    -webkit-mask-composite: source-out;
+            mask-composite: subtract;
+    animation: s3 1s infinite linear;
+  }
+  @keyframes s3 {to{transform: rotate(1turn)}}  
+
+  .left-buttons {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    bottom: 0;
+    align-items: center;
+    text-align: center;
+  }
+
   #elapsed-time,
   #remaining-time {
     font-size: 14px;

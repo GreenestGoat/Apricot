@@ -178,10 +178,14 @@ captionsButton.addEventListener('click', function() {
   if (captionsEnabled) {
     captionsEnabled = false;
     video.textTracks[0].mode = 'hidden';
+    captionContainer.style.height = '0px';
+    captionContainer.style.display = 'none';
     captionsButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" fill="rgba(255, 255, 255, 1)" class="bi bi-badge-cc" viewBox="0 0 16 16"><path d="M3.708 7.755c0-1.111.488-1.753 1.319-1.753.681 0 1.138.47 1.186 1.107H7.36V7c-.052-1.186-1.024-2-2.342-2C3.414 5 2.5 6.05 2.5 7.751v.747c0 1.7.905 2.73 2.518 2.73 1.314 0 2.285-.792 2.342-1.939v-.114H6.213c-.048.615-.496 1.05-1.186 1.05-.84 0-1.319-.62-1.319-1.727v-.743zm6.14 0c0-1.111.488-1.753 1.318-1.753.682 0 1.139.47 1.187 1.107H13.5V7c-.053-1.186-1.024-2-2.342-2C9.554 5 8.64 6.05 8.64 7.751v.747c0 1.7.905 2.73 2.518 2.73 1.314 0 2.285-.792 2.342-1.939v-.114h-1.147c-.048.615-.497 1.05-1.187 1.05-.839 0-1.318-.62-1.318-1.727v-.743z"/><path d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2z"/></svg>';
   } else {
     captionsEnabled = true;
     video.textTracks[0].mode = 'showing';
+    captionContainer.style.height = 'auto';
+    captionContainer.style.display = 'block';
     captionsButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" fill="rgba(255, 255, 255, 1)" class="bi bi-badge-cc-fill" viewBox="0 0 16 16"><path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm3.027 4.002c-.83 0-1.319.642-1.319 1.753v.743c0 1.107.48 1.727 1.319 1.727.69 0 1.138-.435 1.186-1.05H7.36v.114c-.057 1.147-1.028 1.938-2.342 1.938-1.613 0-2.518-1.028-2.518-2.729v-.747C2.5 6.051 3.414 5 5.018 5c1.318 0 2.29.813 2.342 2v.11H6.213c-.048-.638-.505-1.108-1.186-1.108zm6.14 0c-.831 0-1.319.642-1.319 1.753v.743c0 1.107.48 1.727 1.318 1.727.69 0 1.139-.435 1.187-1.05H13.5v.114c-.057 1.147-1.028 1.938-2.342 1.938-1.613 0-2.518-1.028-2.518-2.729v-.747c0-1.7.914-2.751 2.518-2.751 1.318 0 2.29.813 2.342 2v.11h-1.147c-.048-.638-.505-1.108-1.187-1.108z"/></svg>';
   }
 
@@ -206,24 +210,24 @@ function hideCursor() {
   if (!video.paused && !isMouseMoving && !isButtonClicked) {
     video.style.cursor = 'none';
     captionContainer.style.bottom = '50px';
-    captionContainer.style.transition = 'bottom 0.19s ease-in-out';
+    captionContainer.style.transition = 'bottom 0.2s ease-in-out';
     exitButton.style.top = '-100px';
     exitButton.style.opacity = '0';
-    exitButton.style.transition = 'top 0.5s ease, opacity 0.5s ease';
+    exitButton.style.transition = 'top 0.5s ease, opacity 0.45s ease';
     controlBar.style.bottom = '-100px';
     controlBar.style.opacity = '0';
-    controlBar.style.transition = 'bottom 0.5s ease, opacity 0.5s ease';
+    controlBar.style.transition = 'bottom 0.5s ease, opacity 0.45s ease';
     shadowFull.style.opacity = '0';
     shadowFull.style.transition = 'opacity 0.6s ease';
     shadow2.style.top = '-100px';
     shadow2.style.opacity = '0';
-    shadow2.style.transition = 'top 0.6s ease, opacity 0.6s ease';
+    shadow2.style.transition = 'top 0.6s ease, opacity 0.55s ease';
     shadow1.style.bottom = '-100px';
     shadow1.style.opacity = '0';
-    shadow1.style.transition = 'bottom 0.6s ease, opacity 0.6s ease';
+    shadow1.style.transition = 'bottom 0.6s ease, opacity 0.55s ease';
     timeBarWrapper.style.bottom = '-100px';
     timeBarWrapper.style.opacity = '0';
-    timeBarWrapper.style.transition = 'bottom 0.5s ease, opacity 0.5s ease';
+    timeBarWrapper.style.transition = 'bottom 0.5s ease, opacity 0.45s ease';
     document.body.style.cursor = 'none'; // Hide the cursor
   }
 }
@@ -235,7 +239,7 @@ function resetHideCursorTimer() {
 
 videoPlayerContainer.addEventListener('mousemove', function () {
   if (!video.paused) {
-    captionContainer.style.bottom = '160px';
+    captionContainer.style.bottom = '145px';
     exitButton.style.opacity = '1';
     exitButton.style.top = '4.5%';
     controlBar.style.opacity = '1';
@@ -260,24 +264,24 @@ videoPlayerContainer.addEventListener('mouseleave', function () {
   if (!video.paused && !isDragging) {
     resetHideCursorTimer();
     captionContainer.style.bottom = '50px';
-    captionContainer.style.transition = 'bottom 0.19s ease-in-out';
+    captionContainer.style.transition = 'bottom 0.12s ease-in-out';
     exitButton.style.top = '-100px';
     exitButton.style.opacity = '0';
-    exitButton.style.transition = 'top 0.2s ease, opacity 0.2s ease';
+    exitButton.style.transition = 'top 0.2s ease, opacity 0.15s ease';
     controlBar.style.bottom = '-100px';
     controlBar.style.opacity = '0';
-    controlBar.style.transition = 'bottom 0.2s ease, opacity 0.2s ease';
+    controlBar.style.transition = 'bottom 0.2s ease, opacity 0.15s ease';
     shadowFull.style.opacity = '0';
     shadowFull.style.transition = 'opacity 0.3s ease';
     shadow2.style.top = '-100px';
     shadow2.style.opacity = '0';
-    shadow2.style.transition = 'top 0.3s ease, opacity 0.3s ease';
+    shadow2.style.transition = 'top 0.3s ease, opacity 0.25s ease';
     shadow1.style.bottom = '-100px';
     shadow1.style.opacity = '0';
-    shadow1.style.transition = 'bottom 0.3s ease, opacity 0.3s ease';
+    shadow1.style.transition = 'bottom 0.3s ease, opacity 0.25s ease';
     timeBarWrapper.style.bottom = '-100px';
     timeBarWrapper.style.opacity = '0';
-    timeBarWrapper.style.transition = 'bottom 0.2s ease, opacity 0.2s ease';
+    timeBarWrapper.style.transition = 'bottom 0.2s ease, opacity 0.15s ease';
     videoPlayerContainer.style.cursor = 'none'; // Hide the cursor when the mouse leaves the container
   }
 });
@@ -290,20 +294,60 @@ document.addEventListener('click', function () {
 });
 
 
-timeBarWrapper.addEventListener('mousedown', function (event) {
-  isDragging = true;
-  updatePlayedBar(event.clientX);
-});
+var isDragging = false;
+var touchIdentifier = null;
 
-document.addEventListener('mousemove', function (event) {
-  if (isDragging) {
-    updatePlayedBar(event.clientX);
+// Add event listeners for mouse events
+timeBarWrapper.addEventListener('mousedown', startDragging);
+document.addEventListener('mousemove', handleDragging);
+document.addEventListener('mouseup', stopDragging);
+
+// Add event listeners for touch events
+timeBarWrapper.addEventListener('touchstart', startDragging);
+document.addEventListener('touchmove', handleDragging);
+document.addEventListener('touchend', stopDragging);
+
+function startDragging(event) {
+  event.preventDefault();
+  
+  // Determine the touch identifier for touch events
+  if (event.type === 'touchstart') {
+    touchIdentifier = event.changedTouches[0].identifier;
   }
-});
+  
+  isDragging = true;
+  updatePlayedBar(getEventX(event));
+}
 
-document.addEventListener('mouseup', function () {
+function handleDragging(event) {
+  event.preventDefault();
+  
+  // Check if the current event matches the touch identifier for touch events
+  if (event.type === 'touchmove') {
+    var touch = Array.from(event.changedTouches).find(function (t) {
+      return t.identifier === touchIdentifier;
+    });
+    
+    if (!touch) {
+      return;
+    }
+    
+    updatePlayedBar(touch.clientX);
+  } else if (isDragging) {
+    updatePlayedBar(getEventX(event));
+  }
+}
+
+function stopDragging(event) {
+  event.preventDefault();
+  
+  // Clear the touch identifier for touch events
+  if (event.type === 'touchend') {
+    touchIdentifier = null;
+  }
+  
   isDragging = false;
-});
+}
 
 function updatePlayedBar(mouseX) {
   var rect = timeBar.getBoundingClientRect();
@@ -313,6 +357,14 @@ function updatePlayedBar(mouseX) {
   var currentTime = video.duration * progressPercentage;
   playedBar.style.width = progressPercentage * 100 + '%';
   video.currentTime = currentTime;
+}
+
+function getEventX(event) {
+  if (event.type.startsWith('touch')) {
+    return event.touches[0].clientX;
+  } else {
+    return event.clientX;
+  }
 }
 
 document.addEventListener('keydown', function(e) {
@@ -379,7 +431,7 @@ document.addEventListener('keydown', function(e) {
         pauseButton.style.display = 'block';
       } else {
         video.pause();
-        captionContainer.style.bottom = '160px';
+        captionContainer.style.bottom = '145px';
         exitButton.style.opacity = '1';
         exitButton.style.top = '4.5%';
         controlBar.style.opacity = '1';
@@ -398,12 +450,19 @@ document.addEventListener('keydown', function(e) {
       if (captionsEnabled) {
         captionsEnabled = false;
         video.textTracks[0].mode = 'hidden';
+        captionContainer.style.height = '0px';
+        captionContainer.style.display = 'none';
         captionsButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" fill="rgba(255, 255, 255, 1)" class="bi bi-badge-cc" viewBox="0 0 16 16"><path d="M3.708 7.755c0-1.111.488-1.753 1.319-1.753.681 0 1.138.47 1.186 1.107H7.36V7c-.052-1.186-1.024-2-2.342-2C3.414 5 2.5 6.05 2.5 7.751v.747c0 1.7.905 2.73 2.518 2.73 1.314 0 2.285-.792 2.342-1.939v-.114H6.213c-.048.615-.496 1.05-1.186 1.05-.84 0-1.319-.62-1.319-1.727v-.743zm6.14 0c0-1.111.488-1.753 1.318-1.753.682 0 1.139.47 1.187 1.107H13.5V7c-.053-1.186-1.024-2-2.342-2C9.554 5 8.64 6.05 8.64 7.751v.747c0 1.7.905 2.73 2.518 2.73 1.314 0 2.285-.792 2.342-1.939v-.114h-1.147c-.048.615-.497 1.05-1.187 1.05-.839 0-1.318-.62-1.318-1.727v-.743z"/><path d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2z"/></svg>';
       } else {
         captionsEnabled = true;
         video.textTracks[0].mode = 'showing';
+        captionContainer.style.height = 'auto';
+        captionContainer.style.display = 'block';
         captionsButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" fill="rgba(255, 255, 255, 1)" class="bi bi-badge-cc-fill" viewBox="0 0 16 16"><path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm3.027 4.002c-.83 0-1.319.642-1.319 1.753v.743c0 1.107.48 1.727 1.319 1.727.69 0 1.138-.435 1.186-1.05H7.36v.114c-.057 1.147-1.028 1.938-2.342 1.938-1.613 0-2.518-1.028-2.518-2.729v-.747C2.5 6.051 3.414 5 5.018 5c1.318 0 2.29.813 2.342 2v.11H6.213c-.048-.638-.505-1.108-1.186-1.108zm6.14 0c-.831 0-1.319.642-1.319 1.753v.743c0 1.107.48 1.727 1.318 1.727.69 0 1.139-.435 1.187-1.05H13.5v.114c-.057 1.147-1.028 1.938-2.342 1.938-1.613 0-2.518-1.028-2.518-2.729v-.747c0-1.7.914-2.751 2.518-2.751 1.318 0 2.29.813 2.342 2v.11h-1.147c-.048-.638-.505-1.108-1.187-1.108z"/></svg>';
       }
+    
+      // Save the caption state to localStorage
+      localStorage.setItem('captionsEnabled', captionsEnabled);
       break
     case 'KeyI':
       if (video !== document.pictureInPictureElement) {
@@ -583,21 +642,28 @@ function setVolume(volume) {
   }
 }
 
+const captionsStyles = document.createElement('div');
+captionsStyles.id = 'captions-styles';
+document.body.appendChild(captionsStyles);
+
 const captionContainer = document.createElement('div');
 captionContainer.id = 'captionContainer';
-document.body.appendChild(captionContainer);
+captionsStyles.appendChild(captionContainer);
 
 video.addEventListener('timeupdate', () => {
   const activeCues = video.textTracks[0].activeCues;
   if (activeCues.length > 0) {
     captionContainer.style.display = 'block';
+    captionContainer.style.height = 'auto';
     captionContainer.textContent = activeCues[0].text;
+    captionContainer.style.backgroundColor = 'rgba(0, 0, 0, .68)';
   } else {
     captionContainer.style.display = 'none';
+    captionContainer.style.height = '0px';
+    captionContainer.style.backgroundColor = 'transparent';
     captionContainer.textContent = '';
   }
 });
-
 
 function updateTime() {
   var elapsedTime = formatTime(video.currentTime);
@@ -806,7 +872,7 @@ function showSpinner() {
   backward30s.style.marginright = "113px";
   forward30s.style.marginLeft = "113px";
   spinner.style.display = "block";
-  captionContainer.style.bottom = '160px';
+  captionContainer.style.bottom = '145px';
   exitButton.style.opacity = '1';
   exitButton.style.top = '4.5%';
   controlBar.style.opacity = '1';
