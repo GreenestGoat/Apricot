@@ -708,7 +708,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /*const dashManifestUri = 'https://storage.googleapis.com/shaka-demo-assets/angel-one-widevine/dash.mpd';
 const hlsManifestUri = 'https://storage.googleapis.com/shaka-demo-assets/angel-one-widevine-hls/hls.m3u8';*/
-const dashManifestUri = 'https://www041.vipanicdn.net/streamhls/7f8dd00fcdec4483b9ff13f47a3ec4e2/ep.1.1696001423.1080.m3u8';
+const dashManifestUri = 'https://www041.vipanicdn.net/streamhls/7f8dd00fcdec4483b9ff13f47a3ec4e2/ep.1.1696001423.1080';
 const hlsManifestUri = 'https://www041.vipanicdn.net/streamhls/7f8dd00fcdec4483b9ff13f47a3ec4e2/ep.1.1696001423.1080.m3u8';
 const licenseServer = 'https://cwip-shaka-proxy.appspot.com/no_auth';
 
